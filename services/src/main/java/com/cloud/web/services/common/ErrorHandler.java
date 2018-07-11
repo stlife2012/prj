@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ErrorHandler implements ErrorController {
@@ -19,6 +21,9 @@ public class ErrorHandler implements ErrorController {
     public Object error(HttpServletResponse res, HttpServletRequest req) {
         // 错误处理逻辑
         String msg = "系统错误，请联系管理员";
-        return msg;
+        Map data = new HashMap<String,Object>();
+        data.put("status",Integer.valueOf(1));
+        data.put("message",msg);
+        return data;
     }
 }

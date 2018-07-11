@@ -1,0 +1,10 @@
+mybatis:
+  typeAliasesPackage: com.cloud.common.data.pojo
+  mapperLocations: classpath:mapper/*.xml
+
+spring:
+  datasource:
+    url: jdbc:sqlite:d:/db/hcms_lc.db
+    username:
+    password:
+    driver-class-name: org.sqlite.JDBC
