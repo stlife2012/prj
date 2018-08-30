@@ -18,12 +18,12 @@ import java.util.List;
  **/
 public class HbaseAppCase {
     public static void main(String[] args){
-//        createTable();
+//        createTable(); //1
 //        putDataToTable();
 //        getDataFromTable();
 //        readImage();
-//        putImgDataToTable();
-//        getImgDataFromTable();
+        putImgDataToTable();//2
+        getImgDataFromTable();//3
     }
 
     public static void readImage(){
@@ -45,11 +45,16 @@ public class HbaseAppCase {
     public static void putImgDataToTable(){
         HbaseUtil util = new HbaseUtil();
         try{
-            BufferedImage image = ImageIO.read(new File("G:\\10_works\\img002828.jpg")); //读取图片文件流
+            String fname = "gy\\prjyj\\GY\\2011\\T01-GY-2011\\C021406(1).jpg";
+            String fp = "G:\\10_works\\data\\" + fname;
+            String row_key = "gy\\prjyj\\GY\\2011\\T01-GY-2011\\C021406(1).jpg".toLowerCase().replaceAll("\\\\","_");
+
+            BufferedImage image = ImageIO.read(new File(fp)); //读取图片文件流
             ByteArrayOutputStream out = new ByteArrayOutputStream();//新建流。
             ImageIO.write(image,"jpg",out);
             byte[] data = out.toByteArray();
-            util.putDataH("t_doc","img002828.jpg","content","data",data);
+            util.putDataH("t_doc",row_key,"content","data",data);
+            util.putDataH("t_doc",row_key,"info","size",data.length);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -57,11 +62,12 @@ public class HbaseAppCase {
     public static void getImgDataFromTable(){
         HbaseUtil util = new HbaseUtil();
         try {
-            byte[] data = util.getImageValueBySeriesH("t_yj_doc","t_data_2","content","data");
+            String fname = "gy\\prjyj\\GY\\2011\\T01-GY-2011\\C021406(1).jpg".toLowerCase().replaceAll("\\\\","_");
+            byte[] data = util.getImageValueBySeriesH("t_doc",fname,"content","data");
             System.out.println("-----------------------------data:" + data.length);
             ByteArrayInputStream in = new ByteArrayInputStream(data);    //将b作为输入流；
             BufferedImage nimage = ImageIO.read(in);
-            ImageIO.write(nimage,"jpg",new File("G:\\10_works\\nimg1.jpg"));
+            ImageIO.write(nimage,"jpg",new File("G:\\10_works\\nimg10.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }

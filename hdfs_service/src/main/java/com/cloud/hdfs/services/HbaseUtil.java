@@ -50,12 +50,12 @@ public class HbaseUtil {
     /**
      * HBase位置
      */
-    private static final String HBASE_POS = "master";
+    private static final String HBASE_POS = "master2";
 
     /**
      * ZooKeeper位置
      */
-    private static final String ZK_POS = "master";
+    private static final String ZK_POS = "master2";
 
     /**
      * zookeeper服务端口

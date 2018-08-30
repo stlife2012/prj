@@ -16,7 +16,7 @@ import java.util.List;
  * @Version 1.0
  **/
 public class UploadImgToHBase {
-    public static String SRC_DIR = "G:\\10_works\\gy\\prjyj";
+    public static String SRC_DIR = "G:\\10_works\\data\\gy\\prjyj\\data\\";
 
     public static void main(String[] args){
 
@@ -32,7 +32,7 @@ public class UploadImgToHBase {
                 i ++;
                 Path srcPath = new Path(path);
                 String srcfp = path.replace(srcDir,"");
-                srcfp = srcfp.replaceAll("\\\\","/");
+                srcfp = srcfp.replaceAll("\\\\","_").toLowerCase();
                 System.out.println("文件路径：" + path + " => " + srcfp);
 
                 BufferedImage image = ImageIO.read(new File(path));         //读取图片文件流
@@ -40,7 +40,7 @@ public class UploadImgToHBase {
                 ImageIO.write(image,"jpg",out);
                 byte[] data = out.toByteArray();
                 util.putDataH("t_doc",srcfp,"content","data",data);
-
+                util.putDataH("t_doc",srcfp,"info","size",data.length);
                 if(i % 100 == 0){
                     System.out.println("已上传文件数量：" + i + " 文件总数：" + paths.size());
                 }

@@ -17,9 +17,9 @@ import java.util.List;
  **/
 public class ImageTransfer {
     public static void main(String args[]){
-        String listPath = "M:\\yj\\lists\\GYZH_fileList.txt"; //GYJG_fileList.txt GYWC_fileList
-        String outFile = "M:\\yj\\400\\gyzh_data.txt";
-        String dataDir = "M:\\yj\\src\\";
+        String listPath = "G:\\10_works\\gy\\test\\test.txt"; //GYJG_fileList.txt GYWC_fileList
+        String outFile = "G:\\10_works\\gy\\test\\test_data.txt";
+        String dataDir = "G:\\10_works\\gy\\prjyj\\";
 
         long start = System.currentTimeMillis();
         List<String> lists = readLists(listPath);
